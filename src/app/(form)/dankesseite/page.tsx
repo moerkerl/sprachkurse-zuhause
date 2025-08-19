@@ -161,7 +161,7 @@ export default function DankePage() {
                 <div className="text-blue-100 text-sm">Sprachlehrer schweizweit</div>
               </div>
               <div>
-                <div className="text-3xl font-bold mb-2">1'000+</div>
+                <div className="text-3xl font-bold mb-2">1&apos;000+</div>
                 <div className="text-blue-100 text-sm">Erfolgreiche Sprachkurse</div>
               </div>
               <div>
