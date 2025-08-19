@@ -4,16 +4,6 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { useCSRF, addCSRFHeader } from '@/hooks/useCSRF'
 
-const sprachniveauOptions = [
-  'Anfänger (A1)',
-  'Grundkenntnisse (A2)',
-  'Mittelstufe (B1)',
-  'Fortgeschritten (B2)',
-  'Fachkundige Sprachkenntnisse (C1)',
-  'Annähernd muttersprachliche Kenntnisse (C2)',
-  'Muttersprachlich',
-  'Ich möchte das Niveau bestimmen lassen'
-]
 
 const sprachenBeispiele = [
   'Englisch',
@@ -25,8 +15,7 @@ const sprachenBeispiele = [
 ]
 
 const initialState = {
-  person: '',
-  niveau: '',
+  schueler: '',
   sprache: '',
   plz: '',
   nachname: '',
@@ -50,16 +39,8 @@ export default function MultiStepForm() {
     const { name, value } = e.target
     setForm({ ...form, [name]: value })
     
-    // Auto-advance for niveau selection
-    if (name === 'niveau' && value && step === 2) {
-      setTimeout(() => {
-        setError('')
-        setStep(step + 1)
-      }, 300)
-    }
-    
     // Auto-advance for PLZ when 4 characters are entered
-    if (name === 'plz' && value.length === 4 && step === 4) {
+    if (name === 'plz' && value.length === 4 && step === 3) {
       setTimeout(() => {
         setError('')
         setStep(step + 1)
@@ -80,10 +61,9 @@ export default function MultiStepForm() {
     setError('')
     
     // Validierung je Schritt
-    if (step === 1 && !form.person) return setError('Bitte wählen Sie eine Option.')
-    if (step === 2 && !form.niveau) return setError('Bitte wählen oder geben Sie ein Sprachniveau an.')
-    if (step === 3 && !form.sprache) return setError('Bitte geben Sie die gewünschte Sprache an.')
-    if (step === 4 && !form.plz) return setError('Bitte geben Sie Ihre Postleitzahl an.')
+    if (step === 1 && !form.schueler) return setError('Bitte wählen Sie eine Option.')
+    if (step === 2 && !form.sprache) return setError('Bitte geben Sie die gewünschte Sprache an.')
+    if (step === 3 && !form.plz) return setError('Bitte geben Sie Ihre Postleitzahl an.')
     
     setStep(step + 1)
   }
@@ -136,26 +116,26 @@ export default function MultiStepForm() {
   return (
     <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8">
       {/* Progress indicator */}
-      {step <= 5 && (
+      {step <= 4 && (
         <div className="mb-8">
           <div className="flex justify-between items-center mb-4">
-            <div className="text-[#047857] font-semibold">Frage {step} von 5</div>
-            <div className="text-gray-500 text-sm">{Math.round((step / 5) * 100)}% abgeschlossen</div>
+            <div className="text-[#047857] font-semibold">Frage {step} von 4</div>
+            <div className="text-gray-500 text-sm">{Math.round((step / 4) * 100)}% abgeschlossen</div>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
             <div 
               className="bg-[#047857] h-2 rounded-full transition-all duration-300"
-              style={{ width: `${(step / 5) * 100}%` }}
+              style={{ width: `${(step / 4) * 100}%` }}
             />
           </div>
         </div>
       )}
 
-      {/* Step 1: Wer möchte die Sprache lernen */}
+      {/* Step 1: Wer braucht Sprachkurs */}
       {step === 1 && (
         <form onSubmit={handleNext}>
           <h2 className="text-2xl font-bold mb-6 text-gray-900">
-            Wer möchte die Sprache lernen?
+            Wer braucht einen Sprachkurs?
           </h2>
           <div className="grid grid-cols-1 gap-3 mb-6">
             {['Meine Tochter', 'Mein Sohn', 'Ich', 'Jemand anderes'].map((option, index) => (
@@ -163,11 +143,11 @@ export default function MultiStepForm() {
                 key={index}
                 type="button"
                 className={`border-2 rounded-lg px-6 py-4 text-left transition-all font-medium cursor-pointer ${
-                  form.person === option.toLowerCase().replace(' ', '-')
+                  form.schueler === option.toLowerCase().replace(' ', '-')
                     ? 'border-[#047857] bg-blue-50 text-[#010583]'
                     : 'border-gray-300 hover:border-blue-400 text-gray-700'
                 }`}
-                onClick={() => handleSelectWithAutoAdvance('person', option.toLowerCase().replace(' ', '-'))}
+                onClick={() => handleSelectWithAutoAdvance('schueler', option.toLowerCase().replace(' ', '-'))}
               >
                 {option}
               </button>
@@ -186,51 +166,11 @@ export default function MultiStepForm() {
         </form>
       )}
 
-      {/* Step 2: Sprachniveau */}
+      {/* Step 2: Sprache */}
       {step === 2 && (
         <form onSubmit={handleNext}>
           <h2 className="text-2xl font-bold mb-6 text-gray-900">
-            Welches Sprachniveau hat {
-              form.person === 'meine-tochter' ? 'Ihre Tochter' : 
-              form.person === 'mein-sohn' ? 'Ihr Sohn' : 
-              form.person === 'ich' ? 'Sie' : 'die Person'
-            }?
-          </h2>
-          <select 
-            name="niveau" 
-            value={form.niveau} 
-            onChange={handleChangeWithAutoAdvance}
-            className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[#047857] focus:outline-none text-gray-700"
-          >
-            <option value="">Bitte wählen...</option>
-            {sprachniveauOptions.map(opt => (
-              <option key={opt} value={opt}>{opt}</option>
-            ))}
-          </select>
-          {error && <div className="text-red-500 mt-2">{error}</div>}
-          <div className="flex justify-between mt-8">
-            <button 
-              type="button" 
-              className="text-[#047857] hover:text-[#010583] font-medium cursor-pointer"
-              onClick={handleBack}
-            >
-              ← Zurück
-            </button>
-            <button 
-              type="submit" 
-              className="bg-[#047857] text-white px-8 py-3 rounded-lg hover:bg-[#065f46] transition-colors font-semibold cursor-pointer"
-            >
-              Weiter
-            </button>
-          </div>
-        </form>
-      )}
-
-      {/* Step 3: Sprache */}
-      {step === 3 && (
-        <form onSubmit={handleNext}>
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">
-            Welche Sprache möchten Sie lernen?
+            Welche Sprache wird benötigt?
           </h2>
           
           <input 
@@ -280,8 +220,8 @@ export default function MultiStepForm() {
         </form>
       )}
 
-      {/* Step 4: PLZ */}
-      {step === 4 && (
+      {/* Step 3: PLZ */}
+      {step === 3 && (
         <form onSubmit={handleNext}>
           <h2 className="text-2xl font-bold mb-6 text-gray-900">
             Wo wohnen Sie?
@@ -314,14 +254,14 @@ export default function MultiStepForm() {
         </form>
       )}
 
-      {/* Step 5: Kontaktdaten */}
-      {step === 5 && (
+      {/* Step 4: Kontaktdaten */}
+      {step === 4 && (
         <form onSubmit={handleSubmit}>
           <h2 className="text-2xl font-bold mb-6 text-gray-900">
             Ihre Kontaktdaten
           </h2>
           <p className="text-gray-600 mb-6">
-            Damit wir Ihnen die passende Auswahl an Sprachlehrern zusenden können.
+            Damit wir Ihnen die passende Auswahl an Sprachlehrern in der Schweiz zusenden können.
           </p>
           
           <div className="space-y-4">

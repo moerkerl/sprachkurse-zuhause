@@ -10,9 +10,9 @@ interface HubSpotContactData {
   plz: string;
   funktion?: string;
   kontakt_hat_lead_formular_ausgefullt?: string;
-  welche_sprache_benotigt?: string;
-  sucht_sprachkurs_fur?: string;
-  sprachniveau?: string;
+  was_fur_nachhilfe_benotigt_ihr_sohn_?: string;
+  sucht_nachhilfe_fur?: string;
+  schulstufe_kind?: string;
   utm_website_contact?: string;
   // Tracking parameters - HubSpot specific fields
   hs_google_click_id?: string;
@@ -30,8 +30,7 @@ interface HubSpotAPIResponse {
 }
 
 interface PortalFormData {
-  person: string;
-  niveau: string;
+  schueler: string;
   sprache: string;
   plz: string;
   nachname: string;
@@ -277,11 +276,11 @@ export function mapPortalDataToHubSpot(data: PortalFormData): HubSpotContactData
     plz: data.plz,
     funktion: 'Kunde / Lernende',
     
-    // Custom Properties für Lead Formular
+    // Custom Properties für Lead Formular (bewährte Properties vom Nachhilfeportal)
     kontakt_hat_lead_formular_ausgefullt: 'Ja',
-    welche_sprache_benotigt: data.sprache,
-    sucht_sprachkurs_fur: mapWerMoechteSpracheLernen(data.person),
-    sprachniveau: data.niveau,
+    was_fur_nachhilfe_benotigt_ihr_sohn_: data.sprache, // Sprache statt Nachhilfefach
+    sucht_nachhilfe_fur: mapWerBrauchtSprachkurs(data.schueler),
+    schulstufe_kind: 'Sprachkurs', // Vereinfacht, da Sprachniveau beim Beratungsgespräch geklärt wird
     utm_website_contact: 'sprachkurse-zuhause.ch',
   };
   
@@ -302,9 +301,9 @@ export function mapPortalDataToHubSpot(data: PortalFormData): HubSpotContactData
 }
 
 /**
- * Map person field to HubSpot format
+ * Map schueler field to HubSpot format
  */
-function mapWerMoechteSpracheLernen(person: string): string {
+function mapWerBrauchtSprachkurs(schueler: string): string {
   const mappings: Record<string, string> = {
     'meine-tochter': 'Meine Tochter',
     'mein-sohn': 'Mein Sohn',
@@ -312,5 +311,5 @@ function mapWerMoechteSpracheLernen(person: string): string {
     'jemand-anderes': 'Jemand anderes',
   };
   
-  return mappings[person] || 'Jemand anderes';
+  return mappings[schueler] || 'Jemand anderes';
 }

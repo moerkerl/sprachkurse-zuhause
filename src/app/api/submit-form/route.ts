@@ -3,8 +3,7 @@ import { validateCSRFFromRequest, CSRF_ERROR_RESPONSE } from '@/lib/csrf';
 import { hubspotService, mapPortalDataToHubSpot } from '@/lib/hubspotService';
 
 interface FormData {
-  person: string;
-  niveau: string;
+  schueler: string;
   sprache: string;
   plz: string;
   nachname: string;
@@ -58,7 +57,7 @@ export async function POST(request: NextRequest): Promise<NextResponse<SubmitFor
     const formData: FormData = await request.json();
     
     // Validate required fields
-    const requiredFields: (keyof FormData)[] = ['person', 'niveau', 'sprache', 'plz', 'nachname', 'telefon', 'email'];
+    const requiredFields: (keyof FormData)[] = ['schueler', 'sprache', 'plz', 'nachname', 'telefon', 'email'];
     for (const field of requiredFields) {
       if (!formData[field]) {
         // Missing required field
