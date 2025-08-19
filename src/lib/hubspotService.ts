@@ -12,7 +12,6 @@ interface HubSpotContactData {
   kontakt_hat_lead_formular_ausgefullt?: string;
   was_fur_nachhilfe_benotigt_ihr_sohn_?: string;
   sucht_nachhilfe_fur?: string;
-  schulstufe_kind?: string;
   utm_website_contact?: string;
   // Tracking parameters - HubSpot specific fields
   hs_google_click_id?: string;
@@ -274,13 +273,13 @@ export function mapPortalDataToHubSpot(data: PortalFormData): HubSpotContactData
     lastname: data.nachname,
     phone: data.telefon,
     plz: data.plz,
-    funktion: 'Kunde / Lernende',
+    funktion: 'Kunde / Schüler',
     
     // Custom Properties für Lead Formular (bewährte Properties vom Nachhilfeportal)
     kontakt_hat_lead_formular_ausgefullt: 'Ja',
     was_fur_nachhilfe_benotigt_ihr_sohn_: data.sprache, // Sprache statt Nachhilfefach
     sucht_nachhilfe_fur: mapWerBrauchtSprachkurs(data.schueler),
-    schulstufe_kind: 'Sprachkurs', // Vereinfacht, da Sprachniveau beim Beratungsgespräch geklärt wird
+    // schulstufe_kind wird nicht bespielt für Sprachkurse
     utm_website_contact: 'sprachkurse-zuhause.ch',
   };
   

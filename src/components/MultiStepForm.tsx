@@ -131,11 +131,11 @@ export default function MultiStepForm() {
         </div>
       )}
 
-      {/* Step 1: Wer braucht Sprachkurs */}
+      {/* Step 1: Um wen geht es */}
       {step === 1 && (
         <form onSubmit={handleNext}>
           <h2 className="text-2xl font-bold mb-6 text-gray-900">
-            Wer braucht einen Sprachkurs?
+            Um wen geht es?
           </h2>
           <div className="grid grid-cols-1 gap-3 mb-6">
             {['Meine Tochter', 'Mein Sohn', 'Ich', 'Jemand anderes'].map((option, index) => (
@@ -170,7 +170,7 @@ export default function MultiStepForm() {
       {step === 2 && (
         <form onSubmit={handleNext}>
           <h2 className="text-2xl font-bold mb-6 text-gray-900">
-            Welche Sprache wird benötigt?
+            In welcher Sprache soll der Unterricht stattfinden?
           </h2>
           
           <input 
