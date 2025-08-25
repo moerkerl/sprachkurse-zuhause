@@ -87,7 +87,7 @@ export default function Home() {
           <>
             <span className="inline-block">In wenigen Klicks zum</span>{' '}
             <span className="inline-block">
-              <AnimatedText text="richtigen Sprachkurs" />
+              <AnimatedText text="perfekten Sprachkurs" />
             </span>
           </>
         }
