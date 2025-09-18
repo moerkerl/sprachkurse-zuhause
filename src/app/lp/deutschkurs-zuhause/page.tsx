@@ -25,7 +25,7 @@ export default function DeutschkursZuhause() {
     },
     {
       icon: '🎯',
-      title: 'Zertifizierte Deutschlehrer',
+      title: 'Erfahrene Deutschlehrer',
       description: 'Erfahrene Lehrkräfte mit Goethe-Zertifikat und mehr'
     }
   ]
