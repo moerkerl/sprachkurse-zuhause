@@ -222,7 +222,7 @@ export default function EnglischkursZuhause() {
 
             <div className="space-y-6 text-lg text-gray-700 text-left">
               <p>
-                Mit Sprachkurse-Zuhause finden Sie in wenigen Klicks den perfekten Englischlehrer. Über 1'000 zufriedene Schüler haben bereits ihre Englischziele erreicht – vom Business English bis zur Cambridge-Prüfung.
+                Mit Sprachkurse-Zuhause finden Sie in wenigen Klicks den perfekten Englischlehrer. Über 1&apos;000 zufriedene Schüler haben bereits ihre Englischziele erreicht – vom Business English bis zur Cambridge-Prüfung.
               </p>
 
               <p>

@@ -222,7 +222,7 @@ export default function DeutschkursZuhause() {
 
             <div className="space-y-6 text-lg text-gray-700 text-left">
               <p>
-                Mit Sprachkurse-Zuhause finden Sie in wenigen Klicks den passenden Deutschlehrer für Ihre individuellen Bedürfnisse. Über 1'000 zufriedene Schüler haben bereits erfolgreich Deutsch gelernt.
+                Mit Sprachkurse-Zuhause finden Sie in wenigen Klicks den passenden Deutschlehrer für Ihre individuellen Bedürfnisse. Über 1&apos;000 zufriedene Schüler haben bereits erfolgreich Deutsch gelernt.
               </p>
 
               <p>
