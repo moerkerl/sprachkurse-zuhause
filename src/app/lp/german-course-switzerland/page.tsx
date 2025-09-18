@@ -85,9 +85,9 @@ export default function GermanCourseForExpats() {
       <LPHero
         title={
           <>
-            <span className="inline-block">Master German as an</span>{' '}
+            <span className="inline-block">Find Your Perfect</span>{' '}
             <span className="inline-block">
-              <AnimatedText text="Expat in Switzerland" />
+              <AnimatedText text="German Teacher in Minutes" />
             </span>
           </>
         }
