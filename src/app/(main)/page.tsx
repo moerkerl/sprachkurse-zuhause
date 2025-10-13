@@ -94,7 +94,7 @@ export default function Home() {
         }
         subtitle={
           <>
-            Ob Englisch, Französisch, Deutsch oder Schweizerdeutsch – wir zeigen Ihnen sofort passende Sprachkurse und Lehrer. <strong className="font-bold">Ab 800 CHF pro Kurs</strong>
+            Ob Englisch, Französisch, Deutsch oder Schweizerdeutsch – wir zeigen Ihnen sofort passende Sprachkurse und Lehrer. <strong className="font-bold">Ab 1\'200 CHF pro Kurs</strong>
           </>
         }
         buttonText="Jetzt Sprachkurs finden"

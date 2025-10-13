@@ -14,7 +14,7 @@ export default function PricingSection({
     {
       icon: '🌱',
       title: 'Basis',
-      price: 'Ab CHF 800',
+      price: 'Ab CHF 1\'200',
       period: 'pro Kurs (10 Lektionen)',
       description: 'Ideal für den Einstieg',
       features: [
@@ -26,7 +26,7 @@ export default function PricingSection({
     {
       icon: '⭐',
       title: 'Standard',
-      price: 'Ab CHF 1\'600',
+      price: 'Ab CHF 2\'400',
       period: 'pro Kurs (20 Lektionen)',
       description: 'Für kontinuierlichen Fortschritt',
       features: [
@@ -39,7 +39,7 @@ export default function PricingSection({
     {
       icon: '💎',
       title: 'Premium',
-      price: 'Ab CHF 3\'000',
+      price: 'Ab CHF 4\'500',
       period: 'pro Kurs (40 Lektionen)',
       description: 'Für ambitionierte Lernziele',
       features: [

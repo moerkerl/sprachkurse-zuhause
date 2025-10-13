@@ -94,7 +94,7 @@ export default function DeutschkursZuhause() {
         }
         subtitle={
           <>
-            Lernen Sie Deutsch effektiv und individuell – mit erfahrenen Deutschlehrern, die zu Ihnen passen. <strong className="font-bold">Ab 800 CHF pro Kurs</strong>
+            Lernen Sie Deutsch effektiv und individuell – mit erfahrenen Deutschlehrern, die zu Ihnen passen. <strong className="font-bold">Ab 1\'200 CHF pro Kurs</strong>
           </>
         }
         buttonText="Jetzt Deutschkurs finden"

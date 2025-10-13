@@ -94,7 +94,7 @@ export default function EnglischkursZuhause() {
         }
         subtitle={
           <>
-            Master English with confidence – mit erfahrenen Englischlehrern, die Ihre Ziele verstehen. <strong className="font-bold">Ab 800 CHF pro Kurs</strong>
+            Master English with confidence – mit erfahrenen Englischlehrern, die Ihre Ziele verstehen. <strong className="font-bold">Ab 1\'200 CHF pro Kurs</strong>
           </>
         }
         buttonText="Jetzt Englischkurs finden"
