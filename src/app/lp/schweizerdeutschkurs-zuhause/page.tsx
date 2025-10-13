@@ -94,7 +94,7 @@ export default function SchweizerdeutschkursZuhause() {
         }
         subtitle={
           <>
-            Tauchen Sie ein in die echte Schweizer Kultur – mit Muttersprachlern, die Ihnen Schweizerdeutsch mit Herz und Humor beibringen. <strong className="font-bold">Ab 1\'200 CHF pro Kurs</strong>
+            Tauchen Sie ein in die echte Schweizer Kultur – mit Muttersprachlern, die Ihnen Schweizerdeutsch mit Herz und Humor beibringen. <strong className="font-bold">Ab 1&apos;200 CHF pro Kurs</strong>
           </>
         }
         buttonText="Jetzt Schweizerdeutschkurs finden"

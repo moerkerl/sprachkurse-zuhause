@@ -94,7 +94,7 @@ export default function GermanCourseForExpats() {
         }
         subtitle={
           <>
-            Break the language barrier and thrive in Switzerland – with experienced German teachers who understand your journey. <strong className="font-bold">Starting from CHF 1\'200 per course</strong>
+            Break the language barrier and thrive in Switzerland – with experienced German teachers who understand your journey. <strong className="font-bold">Starting from CHF 1&apos;200 per course</strong>
           </>
         }
         buttonText="Find Your German Teacher"
