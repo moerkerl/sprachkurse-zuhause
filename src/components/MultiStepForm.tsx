@@ -303,10 +303,10 @@ export default function MultiStepForm() {
           </h2>
           <div className="grid grid-cols-1 gap-3 mb-6">
             {[
-              { label: 'Unter 1&apos;000 CHF', value: 'unter-1000' },
-              { label: '1&apos;000 - 2&apos;000 CHF', value: '1000-2000' },
-              { label: '2&apos;000 - 3&apos;000 CHF', value: '2000-3000' },
-              { label: '3&apos;000+ CHF', value: '3000-plus' }
+              { label: "Unter 1'000 CHF", value: 'unter-1000' },
+              { label: "1'000 - 2'000 CHF", value: '1000-2000' },
+              { label: "2'000 - 3'000 CHF", value: '2000-3000' },
+              { label: "3'000+ CHF", value: '3000-plus' }
             ].map((option, index) => (
               <button
                 key={index}
@@ -352,7 +352,7 @@ export default function MultiStepForm() {
               Budget zu niedrig
             </h2>
             <p className="text-lg text-gray-600 mb-6">
-              Leider können wir für ein Budget unter 1&apos;000 CHF keine qualifizierten Sprachlehrer vermitteln. Unsere Kurse beginnen ab 1&apos;200 CHF, um professionelle Qualität und individuellen Unterricht zu gewährleisten.
+              Leider können wir für ein Budget unter 1'000 CHF keine qualifizierten Sprachlehrer vermitteln. Unsere Kurse beginnen ab 1'200 CHF, um professionelle Qualität und individuellen Unterricht zu gewährleisten.
             </p>
             <p className="text-gray-600 mb-8">
               Wir empfehlen Ihnen, Ihr Budget zu erhöhen oder unsere Gruppenangebote zu erkunden.
