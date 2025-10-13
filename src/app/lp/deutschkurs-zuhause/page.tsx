@@ -8,6 +8,7 @@ import LPSteps from '@/components/LPSteps'
 import LPTestimonial from '@/components/LPTestimonial'
 import LPOffers from '@/components/LPOffers'
 import AnimatedText from '@/components/AnimatedText'
+import PricingSection from '@/components/PricingSection'
 
 export default function DeutschkursZuhause() {
   const router = useRouter()
@@ -91,7 +92,11 @@ export default function DeutschkursZuhause() {
             </span>
           </>
         }
-        subtitle="Lernen Sie Deutsch effektiv und individuell – mit erfahrenen Deutschlehrern, die zu Ihnen passen."
+        subtitle={
+          <>
+            Lernen Sie Deutsch effektiv und individuell – mit erfahrenen Deutschlehrern, die zu Ihnen passen. <strong className="font-bold">Ab 800 CHF pro Kurs</strong>
+          </>
+        }
         buttonText="Jetzt Deutschkurs finden"
         imageSrc="/images/erwachsener-finanzmathematik-lernen-homeoffice-tutor-analyse-mathe-helden.jpg"
         imageAlt="Individueller Deutschunterricht mit geprüften Lehrpersonen"
@@ -204,6 +209,12 @@ export default function DeutschkursZuhause() {
       <LPTestimonial
         title="Was unsere Deutschlernenden sagen"
         testimonials={testimonials}
+      />
+
+      {/* Pricing */}
+      <PricingSection
+        title="Transparente Preise für Ihren Deutschkurs"
+        description="Unsere Deutschkurse sind darauf ausgelegt, Ihnen nachhaltigen Lernerfolg zu bieten – zu fairen und transparenten Preisen."
       />
 
       {/* Offers */}

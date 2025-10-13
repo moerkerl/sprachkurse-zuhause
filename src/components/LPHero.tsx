@@ -6,7 +6,7 @@ import { useState, Children, cloneElement, ReactElement } from 'react'
 
 interface LPHeroProps {
   title: string | React.ReactNode
-  subtitle: string
+  subtitle: string | React.ReactNode
   buttonText: string
   imageSrc: string
   imageAlt: string

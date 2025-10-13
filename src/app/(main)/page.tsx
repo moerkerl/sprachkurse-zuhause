@@ -8,6 +8,7 @@ import LPSteps from '@/components/LPSteps'
 import LPTestimonial from '@/components/LPTestimonial'
 import LPOffers from '@/components/LPOffers'
 import AnimatedText from '@/components/AnimatedText'
+import PricingSection from '@/components/PricingSection'
 
 export default function Home() {
   const router = useRouter()
@@ -91,7 +92,11 @@ export default function Home() {
             </span>
           </>
         }
-        subtitle="Ob Englisch, Französisch, Deutsch oder Schweizerdeutsch – wir zeigen Ihnen sofort passende Sprachkurse und Lehrer."
+        subtitle={
+          <>
+            Ob Englisch, Französisch, Deutsch oder Schweizerdeutsch – wir zeigen Ihnen sofort passende Sprachkurse und Lehrer. <strong className="font-bold">Ab 800 CHF pro Kurs</strong>
+          </>
+        }
         buttonText="Jetzt Sprachkurs finden"
         imageSrc="/images/erwachsener-finanzmathematik-lernen-homeoffice-tutor-analyse-mathe-helden.jpg"
         imageAlt="Individuelle Sprachkurse mit geprüften Lehrpersonen"
@@ -208,6 +213,9 @@ export default function Home() {
         title="Was unsere Kunden sagen"
         testimonials={testimonials}
       />
+
+      {/* Pricing */}
+      <PricingSection />
 
       {/* Offers */}
       <LPOffers

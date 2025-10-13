@@ -8,6 +8,7 @@ import LPSteps from '@/components/LPSteps'
 import LPTestimonial from '@/components/LPTestimonial'
 import LPOffers from '@/components/LPOffers'
 import AnimatedText from '@/components/AnimatedText'
+import PricingSection from '@/components/PricingSection'
 
 export default function GermanCourseForExpats() {
   const router = useRouter()
@@ -91,7 +92,11 @@ export default function GermanCourseForExpats() {
             </span>
           </>
         }
-        subtitle="Break the language barrier and thrive in Switzerland – with experienced German teachers who understand your journey."
+        subtitle={
+          <>
+            Break the language barrier and thrive in Switzerland – with experienced German teachers who understand your journey. <strong className="font-bold">Starting from CHF 800 per course</strong>
+          </>
+        }
         buttonText="Find Your German Teacher"
         imageSrc="/images/erwachsener-finanzmathematik-lernen-homeoffice-tutor-analyse-mathe-helden.jpg"
         imageAlt="Personalized German lessons for expats in Switzerland"
@@ -204,6 +209,12 @@ export default function GermanCourseForExpats() {
       <LPTestimonial
         title="What Expats Are Saying"
         testimonials={testimonials}
+      />
+
+      {/* Pricing */}
+      <PricingSection
+        title="Transparent Pricing for Your German Course"
+        description="Our German courses are designed to provide sustainable learning success – at fair and transparent prices."
       />
 
       {/* Offers */}

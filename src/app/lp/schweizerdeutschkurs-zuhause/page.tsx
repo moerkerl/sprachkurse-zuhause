@@ -8,6 +8,7 @@ import LPSteps from '@/components/LPSteps'
 import LPTestimonial from '@/components/LPTestimonial'
 import LPOffers from '@/components/LPOffers'
 import AnimatedText from '@/components/AnimatedText'
+import PricingSection from '@/components/PricingSection'
 
 export default function SchweizerdeutschkursZuhause() {
   const router = useRouter()
@@ -91,7 +92,11 @@ export default function SchweizerdeutschkursZuhause() {
             </span>
           </>
         }
-        subtitle="Tauchen Sie ein in die echte Schweizer Kultur – mit Muttersprachlern, die Ihnen Schweizerdeutsch mit Herz und Humor beibringen."
+        subtitle={
+          <>
+            Tauchen Sie ein in die echte Schweizer Kultur – mit Muttersprachlern, die Ihnen Schweizerdeutsch mit Herz und Humor beibringen. <strong className="font-bold">Ab 800 CHF pro Kurs</strong>
+          </>
+        }
         buttonText="Jetzt Schweizerdeutschkurs finden"
         imageSrc="/images/erwachsener-finanzmathematik-lernen-homeoffice-tutor-analyse-mathe-helden.jpg"
         imageAlt="Individueller Schweizerdeutschunterricht mit echten Schweizern"
@@ -204,6 +209,12 @@ export default function SchweizerdeutschkursZuhause() {
       <LPTestimonial
         title="Was unsere Schweizerdeutsch-Schüler sagen"
         testimonials={testimonials}
+      />
+
+      {/* Pricing */}
+      <PricingSection
+        title="Transparente Preise für Ihren Schweizerdeutschkurs"
+        description="Unsere Schweizerdeutschkurse sind darauf ausgelegt, Ihnen nachhaltigen Lernerfolg zu bieten – zu fairen und transparenten Preisen."
       />
 
       {/* Offers */}

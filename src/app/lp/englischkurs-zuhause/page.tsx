@@ -8,6 +8,7 @@ import LPSteps from '@/components/LPSteps'
 import LPTestimonial from '@/components/LPTestimonial'
 import LPOffers from '@/components/LPOffers'
 import AnimatedText from '@/components/AnimatedText'
+import PricingSection from '@/components/PricingSection'
 
 export default function EnglischkursZuhause() {
   const router = useRouter()
@@ -91,7 +92,11 @@ export default function EnglischkursZuhause() {
             </span>
           </>
         }
-        subtitle="Master English with confidence – mit erfahrenen Englischlehrern, die Ihre Ziele verstehen."
+        subtitle={
+          <>
+            Master English with confidence – mit erfahrenen Englischlehrern, die Ihre Ziele verstehen. <strong className="font-bold">Ab 800 CHF pro Kurs</strong>
+          </>
+        }
         buttonText="Jetzt Englischkurs finden"
         imageSrc="/images/erwachsener-finanzmathematik-lernen-homeoffice-tutor-analyse-mathe-helden.jpg"
         imageAlt="Individueller Englischunterricht mit geprüften Lehrpersonen"
@@ -204,6 +209,12 @@ export default function EnglischkursZuhause() {
       <LPTestimonial
         title="Was unsere Englischlernenden sagen"
         testimonials={testimonials}
+      />
+
+      {/* Pricing */}
+      <PricingSection
+        title="Transparente Preise für Ihren Englischkurs"
+        description="Unsere Englischkurse sind darauf ausgelegt, Ihnen nachhaltigen Lernerfolg zu bieten – zu fairen und transparenten Preisen."
       />
 
       {/* Offers */}
