@@ -18,6 +18,7 @@ const initialState = {
   schueler: '',
   sprache: '',
   plz: '',
+  budget: '',
   nachname: '',
   telefon: '',
   email: ''
@@ -43,28 +44,52 @@ export default function MultiStepForm() {
     if (name === 'plz' && value.length === 4 && step === 3) {
       setTimeout(() => {
         setError('')
-        setStep(step + 1)
+        setStep(4)
       }, 300)
     }
   }
 
   const handleSelectWithAutoAdvance = (name: string, value: string) => {
     setForm({ ...form, [name]: value })
-    setTimeout(() => {
-      setError('')
-      setStep(step + 1)
-    }, 300)
+
+    // Special handling for budget selection
+    if (name === 'budget') {
+      setTimeout(() => {
+        setError('')
+        if (value === 'unter-1000') {
+          setStep(5) // Go to rejection screen
+        } else {
+          setStep(6) // Go to contact form
+        }
+      }, 300)
+    } else {
+      setTimeout(() => {
+        setError('')
+        setStep(step + 1)
+      }, 300)
+    }
   }
 
   const handleNext = (e?: React.FormEvent) => {
     if (e) e.preventDefault()
     setError('')
-    
+
     // Validierung je Schritt
     if (step === 1 && !form.schueler) return setError('Bitte wählen Sie eine Option.')
     if (step === 2 && !form.sprache) return setError('Bitte geben Sie die gewünschte Sprache an.')
     if (step === 3 && !form.plz) return setError('Bitte geben Sie Ihre Postleitzahl an.')
-    
+    if (step === 4 && !form.budget) return setError('Bitte wählen Sie Ihr Budget.')
+
+    // Handle budget routing
+    if (step === 4) {
+      if (form.budget === 'unter-1000') {
+        setStep(5) // Rejection screen
+      } else {
+        setStep(6) // Contact form
+      }
+      return
+    }
+
     setStep(step + 1)
   }
 
@@ -123,9 +148,25 @@ export default function MultiStepForm() {
             <div className="text-gray-500 text-sm">{Math.round((step / 4) * 100)}% abgeschlossen</div>
           </div>
           <div className="w-full bg-gray-200 rounded-full h-2">
-            <div 
+            <div
               className="bg-[#047857] h-2 rounded-full transition-all duration-300"
               style={{ width: `${(step / 4) * 100}%` }}
+            />
+          </div>
+        </div>
+      )}
+
+      {/* Progress indicator for step 6 (contact form) */}
+      {step === 6 && (
+        <div className="mb-8">
+          <div className="flex justify-between items-center mb-4">
+            <div className="text-[#047857] font-semibold">Letzte Frage</div>
+            <div className="text-gray-500 text-sm">Fast fertig!</div>
+          </div>
+          <div className="w-full bg-gray-200 rounded-full h-2">
+            <div
+              className="bg-[#047857] h-2 rounded-full transition-all duration-300"
+              style={{ width: '100%' }}
             />
           </div>
         </div>
@@ -254,8 +295,92 @@ export default function MultiStepForm() {
         </form>
       )}
 
-      {/* Step 4: Kontaktdaten */}
+      {/* Step 4: Budget */}
       {step === 4 && (
+        <form onSubmit={handleNext}>
+          <h2 className="text-2xl font-bold mb-6 text-gray-900">
+            Was ist Ihr Budget für diesen Kurs?
+          </h2>
+          <div className="grid grid-cols-1 gap-3 mb-6">
+            {[
+              { label: 'Unter 1&apos;000 CHF', value: 'unter-1000' },
+              { label: '1&apos;000 - 2&apos;000 CHF', value: '1000-2000' },
+              { label: '2&apos;000 - 3&apos;000 CHF', value: '2000-3000' },
+              { label: '3&apos;000+ CHF', value: '3000-plus' }
+            ].map((option, index) => (
+              <button
+                key={index}
+                type="button"
+                className={`border-2 rounded-lg px-6 py-4 text-left transition-all font-medium cursor-pointer ${
+                  form.budget === option.value
+                    ? 'border-[#047857] bg-blue-50 text-[#010583]'
+                    : 'border-gray-300 hover:border-blue-400 text-gray-700'
+                }`}
+                onClick={() => handleSelectWithAutoAdvance('budget', option.value)}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+          {error && <div className="text-red-500 mb-4">{error}</div>}
+          <div className="flex justify-between mt-8">
+            <button
+              type="button"
+              className="text-[#047857] hover:text-[#010583] font-medium cursor-pointer"
+              onClick={handleBack}
+            >
+              ← Zurück
+            </button>
+            <button
+              type="submit"
+              className="bg-[#047857] text-white px-8 py-3 rounded-lg hover:bg-[#065f46] transition-colors font-semibold cursor-pointer"
+            >
+              Weiter
+            </button>
+          </div>
+        </form>
+      )}
+
+      {/* Step 5: Budget zu niedrig (Rejection) */}
+      {step === 5 && (
+        <div className="text-center py-8">
+          <div className="mb-6">
+            <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <span className="text-4xl">😔</span>
+            </div>
+            <h2 className="text-2xl font-bold mb-4 text-gray-900">
+              Budget zu niedrig
+            </h2>
+            <p className="text-lg text-gray-600 mb-6">
+              Leider können wir für ein Budget unter 1&apos;000 CHF keine qualifizierten Sprachlehrer vermitteln. Unsere Kurse beginnen ab 1&apos;200 CHF, um professionelle Qualität und individuellen Unterricht zu gewährleisten.
+            </p>
+            <p className="text-gray-600 mb-8">
+              Wir empfehlen Ihnen, Ihr Budget zu erhöhen oder unsere Gruppenangebote zu erkunden.
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <button
+              onClick={() => {
+                setForm(initialState)
+                setStep(1)
+                setError('')
+              }}
+              className="text-[#047857] hover:text-[#010583] font-medium cursor-pointer px-6 py-3 border-2 border-[#047857] rounded-lg hover:bg-blue-50 transition-colors"
+            >
+              ← Zurück zum Anfang
+            </button>
+            <button
+              onClick={() => router.push('/')}
+              className="bg-[#047857] text-white px-8 py-3 rounded-lg hover:bg-[#065f46] transition-colors font-semibold cursor-pointer"
+            >
+              Zur Startseite
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Step 6: Kontaktdaten */}
+      {step === 6 && (
         <form onSubmit={handleSubmit}>
           <h2 className="text-2xl font-bold mb-6 text-gray-900">
             Ihre Kontaktdaten
