@@ -352,7 +352,7 @@ export default function MultiStepForm() {
               Budget zu niedrig
             </h2>
             <p className="text-lg text-gray-600 mb-6">
-              Leider können wir für ein Budget unter 1'000 CHF keine qualifizierten Sprachlehrer vermitteln. Unsere Kurse beginnen ab 1'200 CHF, um professionelle Qualität und individuellen Unterricht zu gewährleisten.
+              Leider können wir für ein Budget unter 1&apos;000 CHF keine qualifizierten Sprachlehrer vermitteln. Unsere Kurse beginnen ab 1&apos;200 CHF, um professionelle Qualität und individuellen Unterricht zu gewährleisten.
             </p>
             <p className="text-gray-600 mb-8">
               Wir empfehlen Ihnen, Ihr Budget zu erhöhen oder unsere Gruppenangebote zu erkunden.
